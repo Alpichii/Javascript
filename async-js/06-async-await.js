@@ -7,35 +7,79 @@ validateTheHeadingIsAlert()
 */
 
 function goToURL() {
-    setTimeout(() => {
-        console.log('1. URL');
-    }, 2000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('1. URL');
+            resolve();
+        }, 2000);
+    });
 }
 
 function hoverOverPractices() {
-    setTimeout(() => {
-        console.log('2. HOVER OVER');
-    }, 1000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('2. HOVER OVER');
+            resolve();
+        }, 1000);
+    });
 }
+
 function clickOnFrontendTesting() {
-    setTimeout(() => {
-        console.log('3. CLICK ON FRONTEND TESTING');
-    }, 1000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('3. CLICK ON FRONTEND TESTING');
+            resolve();
+        }, 1000);
+    });
 }
 
 function clickOnAlerts() {
-    setTimeout(() => {
-        console.log('4. CLICK ON ALERTS');
-    }, 1000);
-}
-function validateTheHeadingIsAlert() {
-    setTimeout(() => {
-        console.log('5. VALIDATE THE HEADING');
-    }, 1000);
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('4. CLICK ON ALERTS');
+            resolve();
+        }, 1000);
+    });
 }
 
-goToURL();
-hoverOverPractices();
-clickOnFrontendTesting();
-clickOnAlerts();
-validateTheHeadingIsAlert();
+function validateTheHeadingIsAlert() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            //reject('I FAILED THIS ON PURPOSE!');
+            resolve();
+            console.log('5. VALIDATE THE HEADING');
+        }, 1000);
+    }); 
+}
+
+async function test() {
+    try{
+        await goToURL();
+        await hoverOverPractices();
+        await clickOnFrontendTesting();
+        await clickOnAlerts();
+        await validateTheHeadingIsAlert();
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
+test();
+
+// goToURL();
+// hoverOverPractices();
+// clickOnFrontendTesting();
+// clickOnAlerts();
+// validateTheHeadingIsAlert();
+
+// Callback solution
+// goToURL(() => {
+//     hoverOverPractices(() => {
+//         clickOnFrontendTesting(() => {
+//             clickOnAlerts(() => {
+//                 validateTheHeadingIsAlert();
+//             });
+//         });
+//     });
+// });
